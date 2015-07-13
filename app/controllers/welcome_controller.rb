@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  caches_page :partials
+  #caches_page :partials
   
   def index
   end
