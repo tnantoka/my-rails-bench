@@ -1,0 +1,63 @@
+<% num = 500 %>
+
+<h1>Partials</h1>
+
+<p>
+num: <%= num %>
+</p>
+
+<table class="table table-bordered">
+  <tr>
+    <td>
+      <pre>&lt;%= link_to 'Home', :root %&gt;</pre>
+    </td>
+    <td>
+      <%=
+       bench(num) do
+         link_to 'Home', :root
+       end
+      %>
+    </td>
+    <td>
+      <%= link_to 'Home', :root %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <pre># _link.html.erb
+&lt;%= link_to 'Home', :root %&gt;
+
+&lt;%= render 'link' %&gt;</pre>
+    </td>
+    <td>
+      <%=
+       bench(num) do
+         render 'link'
+       end
+      %>
+    </td>
+    <td>
+      <%= render 'link' %>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <pre># welcome_helper.rb
+def_erb_method('render_link', Rails.root.join('app', 'views', 'welcome', '_link.html.haml')
+
+&lt;%= render_link %&gt;</pre>
+    </td>
+    <td>
+      <%=
+       bench(num) do
+         render_link.html_safe
+       end
+      %>
+    </td>
+    <td>
+      <%= render_link.html_safe %>
+    </td>
+  </tr>
+
