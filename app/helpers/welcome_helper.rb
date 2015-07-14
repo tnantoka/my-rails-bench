@@ -9,6 +9,6 @@ module WelcomeHelper
         yield
       end 
     end
-    tms.total * 1000
+    "#{tms.total * 1000} ms"
   end
 end
